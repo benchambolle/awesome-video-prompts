@@ -1,0 +1,13 @@
+{
+  "value": "medium shot",
+  "prompt": "balanced framing with moderate subject size, contextual background retention, comfortable headroom and lead room",
+  "example": {
+    "type": "video",
+    "url": "https://v3.fal.media/files/rabbit/Tu1Id9wogEnaQJuxp5rBl_output.mp4"
+  },
+  "thumbnail": {
+    "type": "image",
+    "url": "/thumbnails/medium-shot.jpg"
+  },
+  "category": "camera_shot"
+}
