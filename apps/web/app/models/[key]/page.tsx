@@ -20,11 +20,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title,
       description,
       type: 'website',
+      images: [
+        {
+          url: '/og.png',
+          width: 1200,
+          height: 630,
+          alt: `${title} - Professional AI Video Generation Model`,
+          type: "image/png",
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title,
-      description
+      description,
+      images: ['/og.png'],
     }
   }
 }
