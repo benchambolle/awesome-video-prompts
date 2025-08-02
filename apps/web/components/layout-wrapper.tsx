@@ -1,6 +1,7 @@
   "use client";
 
 import { usePathname, useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
 import { SidebarInset, SidebarProvider, useSidebar } from "@workspace/ui/components/ui/sidebar";
 import { AppSidebar } from "@workspace/ui/components/app-sidebar";
 import { DashboardHeader } from "@workspace/ui/components/dashboard-header";
@@ -20,8 +21,20 @@ function LayoutContent({ children, pathname, onNavigate }: {
   onNavigate: (url: string) => void;
 }) {
   const { open } = useSidebar();
+  const [isMobile, setIsMobile] = useState(false);
   
-  // Calculate margin based on sidebar state
+  // Check if screen is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
+  // Calculate margin based on sidebar state (only for non-mobile)
   const marginLeft = open ? SIDEBAR_WIDTH_EXPANDED : SIDEBAR_WIDTH_COLLAPSED;
   
   return (
@@ -29,10 +42,12 @@ function LayoutContent({ children, pathname, onNavigate }: {
       {/* Fixed positioned sidebar */}
       <AppSidebar />
       
-      {/* Content area with dynamic margin */}
+      {/* Content area with dynamic margin - only on non-mobile */}
       <div 
-        className="flex-1 flex flex-col min-h-screen"
-        style={{ maxWidth: `calc(100% - ${marginLeft})` }}
+        className="flex-1 flex flex-col min-h-screen w-full"
+        style={{ 
+          maxWidth: isMobile ? '100%' : `calc(100% - ${marginLeft})`
+        }}
       >
         {/* Sticky header with dynamic margin */}
         <DashboardHeader 
