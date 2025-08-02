@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import ModelDetailClient from './model-detail-client'
 
 interface Props {
@@ -29,5 +30,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function VideoGenerationPage({ params }: Props) {
-  return <ModelDetailClient />
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ModelDetailClient />
+    </Suspense>
+  )
 }

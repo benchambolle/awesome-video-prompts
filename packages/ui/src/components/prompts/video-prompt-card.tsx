@@ -92,33 +92,33 @@ function getModelDisplayName(modelName: string): string {
     const version = versionMatch ? ` ${versionMatch[0]}` : '';
     
     // Handle special cases
-    if (modelPart.toLowerCase().includes('wan')) {
+    if (modelPart && modelPart.toLowerCase().includes('wan')) {
       return `WAN${version}`;
     }
-    if (modelPart.toLowerCase().includes('hailuo')) {
+    if (modelPart && modelPart.toLowerCase().includes('hailuo')) {
       return `Hailuo${version}`;
     }
-    if (modelPart.toLowerCase().includes('kling')) {
+    if (modelPart && modelPart.toLowerCase().includes('kling')) {
       return `Kling${version}`;
     }
-    if (modelPart.toLowerCase().includes('pixverse')) {
+    if (modelPart && modelPart.toLowerCase().includes('pixverse')) {
       return `Pixverse${version}`;
     }
-    if (modelPart.toLowerCase().includes('veo')) {
+    if (modelPart && modelPart.toLowerCase().includes('veo')) {
       return `Veo${version}`;
     }
-    if (modelPart.toLowerCase().includes('vidu')) {
+    if (modelPart && modelPart.toLowerCase().includes('vidu')) {
       return `Vidu${version}`;
     }
-    if (modelPart.toLowerCase().includes('ltx')) {
+    if (modelPart && modelPart.toLowerCase().includes('ltx')) {
       return `LTX${version}`;
     }
-    if (modelPart.toLowerCase().includes('seedance')) {
+    if (modelPart && modelPart.toLowerCase().includes('seedance')) {
       return `Seedance${version}`;
     }
     
     // Generic fallback
-    return modelPart.charAt(0).toUpperCase() + modelPart.slice(1).replace(/-/g, '') + version;
+    return modelPart ? modelPart.charAt(0).toUpperCase() + modelPart.slice(1).replace(/-/g, '') + version : 'Unknown';
   }
   
   // Handle direct model names without slashes
